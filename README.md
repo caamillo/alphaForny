@@ -1,0 +1,2 @@
+# alphaForny
+PokeMMO EVs / Gyms Farm
