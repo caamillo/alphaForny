@@ -52,4 +52,3 @@ def loadScript():
 
 if __name__ == "__main__":
     script = loadScript()
-    # print(t('general.name'))
