@@ -1,1 +1,2 @@
 PyAutoGUI==0.9.53
+toml==0.10.2
