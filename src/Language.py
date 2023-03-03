@@ -27,8 +27,8 @@ class Language:
                     langJson = json.load(lang)
                     print(idxLang, langJson['general']['lang'])
                 idxLang += 1
-        choosed = None
+        chose = None
         print()
-        while (choosed == None or choosed < 0 or choosed >= idxLang):
-            choosed = int(input('Select the index of a valid lang: '))
-        return self.langIdxToJson(choosed)
+        while (chose == None or chose < 0 or chose >= idxLang):
+            chose = int(input('Select the index of a valid lang: '))
+        return self.langIdxToJson(chose)

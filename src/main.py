@@ -1,5 +1,4 @@
 # Libs
-import toml
 import os
 
 # Language
@@ -25,13 +24,13 @@ def loadScript():
     os.system('clear')
     print(t('main.select'))
 
-    choosed = None
+    chose = None
     selectedPath = STARTDIR
     selectedDirName = 'scripts'
 
     selectedDir = f'{ selectedPath }{ selectedDirName }/'
     # printTree(selectedDir)
-    while (choosed == None):
+    while (chose == None):
         printDir(selectedDir, t)
         break
 
