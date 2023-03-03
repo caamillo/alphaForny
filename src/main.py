@@ -40,15 +40,16 @@ def loadScript():
         
         if (idx >= 0):
             item = script.idxItemToPath(idx)
-            if (os.path.isdir(item)):
+            if (item == None):
+                continue
+            elif (os.path.isdir(item)):
                 script.gotoDir(idx)
             else:
                 chose = item
         elif (idx == -1):
             script.backDir()
-    
-    print('chose', chose)
+    return chose
 
 if __name__ == "__main__":
-    loadScript()
+    script = loadScript()
     # print(t('general.name'))

@@ -18,21 +18,25 @@ class Script:
         self.count = countChildren(selectedDir)
 
     def idxItemToPath(self, idx):
-        return os.path.join(self.currentPath, os.listdir(self.currentPath)[idx])
+        if (idx < self.count and idx >= 0):
+            return os.path.join(self.currentPath, os.listdir(self.currentPath)[idx])
     
     def isStart(self):
         return self.depth == 0
 
     def gotoDir(self, idx):
-        if (idx > self.count or idx < 0):
+        if (idx >= self.count or idx < 0):
             return
+        print(idx, self.currentPath, self.depth, self.count)
         self.depth += 1
         self.currentPath = self.idxItemToPath(idx)
+        self.count = countChildren(self.currentPath)
 
     def backDir(self):
         if (self.depth > 0):
             self.depth -= 1
             self.currentPath = '.' + os.path.dirname(self.currentPath)[1:]
+            self.count = countChildren(self.currentPath)
 
     def printCurrDir(self):
         os.system(self.cmd['general']['clear'])
