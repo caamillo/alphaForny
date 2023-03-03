@@ -17,6 +17,7 @@ class Language:
         return None
 
     def chooseLang(self):
+        os.system('clear')
         print('Please, choose a language:')
         idxLang = 0
         for langFile in os.listdir(self.langDir):

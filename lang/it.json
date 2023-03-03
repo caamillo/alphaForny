@@ -2,5 +2,14 @@
     "general": {
         "name": "AlphaForny",
         "lang": "Italiano"
+    },
+    "main": {
+        "select": "Seleziona una directory o uno script da indice:",
+        "item": {
+            "singular": "item",
+            "plural": "items",
+            "items_found": "items trovati",
+            "empty": "Vuoto"
+        }
     }
 }

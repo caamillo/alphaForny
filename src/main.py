@@ -1,5 +1,6 @@
 # Libs
 import toml
+import os
 
 # Language
 from Language import Language
@@ -9,19 +10,31 @@ from Translator import Translator
 from Config import Config
 config = Config()
 
+STARTDIR = config.general['STARTDIR']
+
+# Utils
+from utils import printDir
+
 # Language Setup
-language = Language(lang = config.general['STARTDIR'])
+language = Language(langDir = STARTDIR)
 lang = language.chooseLang()
 translator = Translator(lang)
 t = translator.t
 
-def choosePath():
-    print('Select a script:')
+def loadScript():
+    os.system('clear')
+    print(t('main.select'))
+
     choosed = None
-    selectedDir = 'lang'
-    # while (choosePath == None):
-    #     for scriptDir in os.listdir(self.langDir):
+    selectedPath = STARTDIR
+    selectedDirName = 'scripts'
+
+    selectedDir = f'{ selectedPath }{ selectedDirName }/'
+    # printTree(selectedDir)
+    while (choosed == None):
+        printDir(selectedDir, t)
+        break
 
 if __name__ == "__main__":
-    pass
+    loadScript()
     # print(t('general.name'))
