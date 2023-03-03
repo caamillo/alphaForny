@@ -2,8 +2,8 @@ import os
 import json
 
 class Language:
-    def __init__(self, langDir = './lang/') -> None:
-        self.langDir = langDir
+    def __init__(self, langDir) -> None:
+        self.langDir = langDir + 'lang/'
     
     def langIdxToJson(self, idx):
         idxLang = 0
