@@ -4,7 +4,7 @@ import pyautogui as pag
 
 import time
 
-class Bot:
+class AlphaForny:
     def __init__(self, confidence = .8) -> None:
         self.confidence = confidence
     
