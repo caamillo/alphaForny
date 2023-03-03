@@ -5,6 +5,7 @@
     },
     "main": {
         "select": "Seleziona una directory o uno script da indice:",
+        "goback": "Vai indietro con",
         "item": {
             "singular": "item",
             "plural": "items",

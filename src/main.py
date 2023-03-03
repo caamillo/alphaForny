@@ -12,7 +12,7 @@ config = Config()
 STARTDIR = config.general['STARTDIR']
 
 # Utils
-from utils import printDir
+# from utils import 
 
 # Language Setup
 language = Language(langDir = STARTDIR)
@@ -20,19 +20,28 @@ lang = language.chooseLang()
 translator = Translator(lang)
 t = translator.t
 
+# Script Setup
+from Script import Script
 def loadScript():
-    os.system('clear')
-    print(t('main.select'))
-
     chose = None
-    selectedPath = STARTDIR
-    selectedDirName = 'scripts'
+    script = Script(STARTDIR, 'scripts', t)
 
-    selectedDir = f'{ selectedPath }{ selectedDirName }/'
-    # printTree(selectedDir)
     while (chose == None):
-        printDir(selectedDir, t)
-        break
+        script.printCurrDir()
+        if (not script.isStart()):
+            print(t('main.goback'), -1)
+        idx = int(input('Select: '))
+        
+        if (idx >= 0):
+            item = script.idxItemToPath(idx)
+            if (os.path.isdir(item)):
+                script.gotoDir(idx)
+            else:
+                chose = item
+        elif (idx == -1):
+            script.backDir()
+    
+    print('chose', chose)
 
 if __name__ == "__main__":
     loadScript()
