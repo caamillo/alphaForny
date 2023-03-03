@@ -1,5 +1,7 @@
 # Libs
 import os
+import platform
+import json
 
 # Language
 from Language import Language
@@ -11,11 +13,15 @@ config = Config()
 
 STARTDIR = config.general['STARTDIR']
 
+osName = platform.system()
+with open(f'./cmd/{ "windows" if osName == "Windows" else "linux" }.json') as f:
+    cmd = json.load(f)
+
 # Utils
-# from utils import 
+# from utils import
 
 # Language Setup
-language = Language(langDir = STARTDIR)
+language = Language(STARTDIR, cmd)
 lang = language.chooseLang()
 translator = Translator(lang)
 t = translator.t
@@ -24,7 +30,7 @@ t = translator.t
 from Script import Script
 def loadScript():
     chose = None
-    script = Script(STARTDIR, 'scripts', t)
+    script = Script(STARTDIR, 'scripts', t, cmd)
 
     while (chose == None):
         script.printCurrDir()

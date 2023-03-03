@@ -5,7 +5,7 @@ import os
 from utils import countChildren
 
 class Script:
-    def __init__(self, selectedPath, selectedDirName, t) -> None:
+    def __init__(self, selectedPath, selectedDirName, t, cmd) -> None:
 
         selectedDir = f'{ selectedPath }{ selectedDirName }/'
         self.scriptDir = selectedDir
@@ -13,6 +13,7 @@ class Script:
         self.currentPath = selectedDir
 
         self.t = t
+        self.cmd = cmd
         self.depth = 0
         self.count = countChildren(selectedDir)
 
@@ -34,7 +35,7 @@ class Script:
             self.currentPath = '.' + os.path.dirname(self.currentPath)[1:]
 
     def printCurrDir(self):
-        os.system('clear')
+        os.system(self.cmd['general']['clear'])
         print(self.t('main.select'))
         for (idx, item) in enumerate(os.listdir(self.currentPath)):
             itemPath = os.path.join(self.currentPath, item)
@@ -48,7 +49,8 @@ class Script:
             print('{}{}[{}] {}'.format(idx, sep, '+' if isDir else '-', item), end='' if isDir else '\n')
 
             if (isDir):
-                if (self.count > 0):
-                    print(f' ({ self.count } { self.t("main.item.items_found") })')
+                count = countChildren(itemPath)
+                if (count > 0):
+                    print(f' ({ count } { self.t("main.item.items_found") })')
                 else:
                     print(f' ({ self.t("main.item.empty") })')
