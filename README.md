@@ -1,2 +1,2 @@
 # alphaForny
-PokeMMO EVs / Gyms Farm
+PokeMMO EVs / Gyms Farm-Bot
