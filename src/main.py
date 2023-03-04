@@ -13,15 +13,11 @@ config = Config()
 
 STARTDIR = config.general['STARTDIR']
 
-osName = platform.system()
-with open(f'./cmd/{ "windows" if osName == "Windows" else "linux" }.json') as f:
-    cmd = json.load(f)
-
 # Utils
-# from utils import
+from utils import clearScreen
 
 # Language Setup
-language = Language(STARTDIR, cmd)
+language = Language(STARTDIR)
 lang = language.chooseLang()
 translator = Translator(lang)
 t = translator.t
@@ -30,7 +26,7 @@ t = translator.t
 from Script import Script
 def loadScript():
     chose = None
-    script = Script(STARTDIR, 'scripts', t, cmd)
+    script = Script(STARTDIR, 'scripts', t)
 
     while (chose == None):
         script.printCurrDir()

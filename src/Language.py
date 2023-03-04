@@ -1,10 +1,11 @@
 import os
 import json
 
+from utils import clearScreen
+
 class Language:
-    def __init__(self, langDir, cmd) -> None:
+    def __init__(self, langDir) -> None:
         self.langDir = langDir + 'lang/'
-        self.cmd = cmd
     
     def langIdxToJson(self, idx):
         idxLang = 0
@@ -18,7 +19,7 @@ class Language:
         return None
 
     def chooseLang(self):
-        os.system(self.cmd['general']['clear'])
+        clearScreen()
         print('Please, choose a language:')
         idxLang = 0
         for langFile in os.listdir(self.langDir):

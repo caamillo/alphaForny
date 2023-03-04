@@ -1,7 +1,7 @@
 setup:
-    TEST ciao,123,214 # Thats just a test
+    SLEEP 3 # Thats just a test
 
 loop:
-    TEST 333
+    CLICK 3,3
 
 # End

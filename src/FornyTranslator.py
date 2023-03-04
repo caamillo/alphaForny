@@ -1,9 +1,12 @@
 import time
 
+from utils import clearScreen
+
 class FornyTranslator:
     def __init__(self, scriptPath, action) -> None:
         self.scriptPath = scriptPath
         self.actions = action
+        self.cmds = self.getCmds()
 
     def normalizeRow(self, row):
         if row.find('#') >= 0: # Trim Row + Remove Comments
@@ -17,26 +20,35 @@ class FornyTranslator:
         cmds = {}
         lastCmd = ""
 
-        for line in lines:
-            normalizedLine = self.normalizeRow(line)
-            if len(normalizedLine) <= 0:
-                pass # Skip blank \n
-            elif normalizedLine.find(':') >= 0:
-                lastCmd = normalizedLine[ : - (len(normalizedLine) - normalizedLine.find(':'))]
-                cmds[lastCmd] = {}
-            else:
-                splittedLine = normalizedLine.split()
-                if len(splittedLine) > 1:
-                    if splittedLine[1].find(',') >= 0:
-                        splittedLine[1] = splittedLine[1].split(',')
-                    cmds[lastCmd][splittedLine[0]] = splittedLine[1]
+        try:
+            for line in lines:
+                normalizedLine = self.normalizeRow(line)
+                if len(normalizedLine) <= 0:
+                    pass # Skip blank \n
+                elif normalizedLine.find(':') >= 0:
+                    lastCmd = normalizedLine[ : - (len(normalizedLine) - normalizedLine.find(':'))]
+                    cmds[lastCmd] = {}
                 else:
-                    cmds[lastCmd][splittedLine[0]] = splittedLine[0]
-                print(splittedLine)
+                    splittedLine = normalizedLine.split()
+                    if len(splittedLine) > 1:
+                        if splittedLine[1].find(',') >= 0:
+                            splittedLine[1] = splittedLine[1].split(',')
+                        key, value = splittedLine[:2]
+                        if not self.validateCmd(key, value):
+                            raise Exception(f'{ key } { value } is not a valid command')
+                        cmds[lastCmd][key] = value
+                    else:
+                        if not self.validateCmd(splittedLine[0]):
+                            raise Exception(f'{ splittedLine[0] } is not a valid command')
+                        cmds[lastCmd][splittedLine[0]] = splittedLine[0]
+                    print(splittedLine)
+        except Exception as err:
+            clearScreen()
+            print('[Error]:', err)
         
         return cmds
 
-    def validateCmd(self, key, value):
+    def validateCmd(self, key, value = None):
         try:
             if key == 'CLICK':
                 if type(value) is list and len(value) > 1:
