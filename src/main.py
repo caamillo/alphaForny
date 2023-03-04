@@ -50,5 +50,10 @@ def loadScript():
             script.backDir()
     return chose
 
+from FornyTranslator import FornyTranslator
+from Action import Action
+
 if __name__ == "__main__":
-    script = loadScript()
+    scriptPath = loadScript()
+    action = Action()
+    fornytrans = FornyTranslator(scriptPath, action)
