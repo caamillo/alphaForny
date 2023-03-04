@@ -1,10 +1,15 @@
 {
     "general": {
         "name": "AlphaForny",
-        "lang": "Italiano"
+        "lang": "Italiano",
+        "status": {
+            "error": "Error",
+            "state": "Stato"
+        }
     },
     "main": {
         "select": "Seleziona una directory o uno script da indice:",
+        "select2": "Seleziona",
         "goback": "Vai indietro con",
         "item": {
             "singular": "item",
@@ -12,5 +17,15 @@
             "items_found": "items trovati",
             "empty": "Vuoto"
         }
+    },
+    "translator": {
+        "notvalid": "non è un comando valido"
+    },
+    "alphaforny": {
+        "start": "AlphaForny si sta avviando...",
+        "killed": "Lo script è stato interrotto",
+        "paused": "Lo script è stato messo in pausa",
+        "resumed": "Lo script è ricominciato",
+        "handling_error": "C'è stato un errore durante l'input handling"
     }
 }

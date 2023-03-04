@@ -1,10 +1,15 @@
 {
     "general": {
         "name": "AlphaForny",
-        "lang": "English"
+        "lang": "English",
+        "status": {
+            "error": "Error",
+            "state": "State"
+        }
     },
     "main": {
         "select": "Select a directory or a script by index",
+        "select2": "Select",
         "goback": "Go back with",
         "item": {
             "singular": "item",
@@ -12,5 +17,15 @@
             "items_found": "items found",
             "empty": "Empty"
         }
+    },
+    "translator": {
+        "notvalid": "is not a valid command"
+    },
+    "alphaforny": {
+        "start": "Starting AlphaForny...",
+        "killed": "Script has been killed",
+        "paused": " Script has been paused",
+        "resumed": "Script has been resumed",
+        "handling_error": "An error has been occured during input handling"
     }
 }

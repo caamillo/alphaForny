@@ -5,9 +5,11 @@ from pynput.keyboard import Key, Listener
 from threading import Thread
 
 class AlphaForny(FornyTranslator, Action):
-    def __init__(self, scriptPath) -> None:
+    def __init__(self, scriptPath, t) -> None:
         self.action = Action()
-        super().__init__(scriptPath, self.action)
+        self.t = t
+
+        super().__init__(scriptPath, self.action, self.t)
 
         self.pause = False
         self.end = False
@@ -16,18 +18,18 @@ class AlphaForny(FornyTranslator, Action):
     def onRelease(self, key):
         try:
             if key == Key.esc:
-                print("[State]: Script has been killed")
+                print(f"[{ self.t('general.status.state') }]: { self.t('alphaforny.killed') }")
                 self.end = True
                 return False
             elif key.char == 'p':
                 if not self.pause:
-                    print("[State]: Script has been paused")
+                    print(f"[{ self.t('general.status.state') }]: { self.t('alphaforny.paused') }")
                     self.pause = True
                 else:
-                    print("[State]: Script has been resumed")
+                    print(f"[{ self.t('general.status.state') }]: { self.t('alphaforny.resumed') }")
                     self.pause = False
         except:
-            print('[Error]: An error has been occured during input handling')
+            print(f'[{ self.t("general.status.state") }]: { self.t("alphaforny.handling_error") }')
     def exec(self, skipStart = False):
         if not skipStart: # Start
             for instruction in self.cmds:
@@ -45,7 +47,7 @@ class AlphaForny(FornyTranslator, Action):
                     break
                 self.translateCmd(cmd, self.cmds['loop'][cmd])
     def start(self):
-        print("[State]: Starting AlphaForny...")
+        print(f"[{ self.t('general.status.state') }]: { self.t('alphaforny.start') }")
 
         # AlphaForny Thread
         executeThread = Thread(target = self.exec, args=(False, ))

@@ -35,7 +35,7 @@ def loadScript():
         script.printCurrDir()
         if (not script.isStart()):
             print(t('main.goback'), -1)
-        idx = int(input('Select: '))
+        idx = int(input(f'{ t("main.select2") }: '))
         
         if (idx >= 0):
             item = script.idxItemToPath(idx)
@@ -51,5 +51,5 @@ def loadScript():
 
 if __name__ == "__main__":
     scriptPath = loadScript()
-    alphaForny = AlphaForny(scriptPath)
+    alphaForny = AlphaForny(scriptPath, t)
     alphaForny.start()
