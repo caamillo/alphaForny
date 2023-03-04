@@ -3,6 +3,9 @@ import os
 import platform
 import json
 
+# AlphaForny Core
+from AlphaForny import AlphaForny
+
 # Language
 from Language import Language
 from Translator import Translator
@@ -46,10 +49,7 @@ def loadScript():
             script.backDir()
     return chose
 
-from FornyTranslator import FornyTranslator
-from Action import Action
-
 if __name__ == "__main__":
     scriptPath = loadScript()
-    action = Action()
-    fornytrans = FornyTranslator(scriptPath, action)
+    alphaForny = AlphaForny(scriptPath)
+    alphaForny.start()
