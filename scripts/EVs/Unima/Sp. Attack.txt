@@ -1,7 +1,6 @@
 setup:
-    SLEEP 3 # Thats just a test
+    PRINT Hello_Worlddd # Thats just a test
 
-loop:
-    CLICK 3,3
-
+# loop:
+#     CLICK 3,3
 # End

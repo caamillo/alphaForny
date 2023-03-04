@@ -41,7 +41,7 @@ class FornyTranslator:
                         if not self.validateCmd(splittedLine[0]):
                             raise Exception(f'{ splittedLine[0] } is not a valid command')
                         cmds[lastCmd][splittedLine[0]] = splittedLine[0]
-                    print(splittedLine)
+                    # print(splittedLine)
         except Exception as err:
             clearScreen()
             print('[Error]:', err)
@@ -60,31 +60,32 @@ class FornyTranslator:
                 if type(val1) is float:
                     return True
             elif key == 'WAITFOR':
-                if value is str:
+                if type(value) is str:
+                    return True
+            elif key == 'PRINT':
+                if type(value) is str:
                     return True
             elif key == 'WAITBATTLE':
-                if value is None:
+                if type(value) is None:
                     return True
             elif key == 'SKIP':
-                if value is None:
+                if type(value) is None:
                     return True
             return False
         except:
             return False
         
     
-    def translateCmd(self, key, value):
-        if key.find('CLICK') >= 0:
-            # clickX, clickY = value[:2]
-            self.actions.clickTo(value[0], value[1])
-        elif key.find('SLEEP') >= 0:
-            time.sleep(value)
-        elif key.find('WAITFOR') >= 0:
+    def translateCmd(self, key, value = None):
+        if key == 'CLICK':
+            clickX, clickY = map(int, value[:2])
+            self.actions.clickTo(clickX, clickY)
+        elif key == 'SLEEP':
+            time.sleep(float(value))
+        elif key == 'WAITFOR':
             self.actions.waitFor(value)
-        elif key.find('WAITBATTLE') >= 0:
-            self.actions.waitBattle()
-        elif key.find('SKIP') >= 0:
-            self.actions.skip()
+        elif key == 'PRINT':
+            print(value)
 
 if __name__ == "__main__":
     trans = FornyTranslator('./scripts/EVs/Unima/Sp. Attack.txt')
