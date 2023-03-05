@@ -50,7 +50,9 @@ loop:
     PRESS Z
     SLEEP .5
     PRESS Z
+    SPAM Z
     SLEEP 15
+    STOPSPAM Z
 
     # Second
     PRESS 4
@@ -60,7 +62,9 @@ loop:
     PRESS Z
     SLEEP .5
     PRESS Z
+    SPAM Z
     SLEEP 15
+    STOPSPAM Z
 
     # Third
     PRESS 4
@@ -70,7 +74,9 @@ loop:
     PRESS Z
     SLEEP .5
     PRESS Z
+    SPAM Z
     SLEEP 15
+    STOPSPAM Z
 
     # Fourth
     PRESS 4
@@ -80,7 +86,9 @@ loop:
     PRESS Z
     SLEEP .5
     PRESS Z
+    SPAM Z
     SLEEP 15
+    STOPSPAM Z
 
     HOLD LEFT
     SLEEP 4

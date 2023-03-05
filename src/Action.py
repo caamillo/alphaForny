@@ -9,6 +9,7 @@ from pynput.mouse import Button
 from pynput.keyboard import Key
 
 import time
+from threading import Thread
 
 class Action:
     def __init__(self, confidence = .8) -> None:
@@ -16,6 +17,8 @@ class Action:
         
         self.mouse = mouse.Controller()
         self.kbd = kbd.Controller()
+
+        self.spam = False
     
     def clickTo(self, x, y, left = True, sleep1 = .1, sleep2 = .5):
         self.mouse.position = (x, y)
@@ -44,3 +47,17 @@ class Action:
         time.sleep(sleep1)
         self.releaseKey(key)
         time.sleep(sleep2)
+
+    def spamKey(self, key, sleep1 = .1, sleep2 = .2, sleep3 = .5):
+        while self.spam:
+            print('Spamming', key)
+            self.pressKey(key, sleep1, sleep2)
+            time.sleep(sleep3)
+    
+    def createSpam(self, key, sleep1 = .1, sleep2 = .2, sleep3 = .5):
+        self.spam = True
+        spamThread =  Thread(target = self.spamKey, args=(key, sleep1, sleep2, sleep3))
+        spamThread.start()
+    
+    def destroySpam(self):
+        self.spam = False
