@@ -1,7 +1,9 @@
 setup:
-    CLICK 1280,720 # Thats just a test
+    PRINT ciao_mondo
 
 loop:
-    CLICK 1280,720
-    # PRINT Hello_Worlddd
-# End
+    PRESS UP
+    PRESS RIGHT
+    PRESS LEFT
+    PRESS DOWN
+    SLEEP 5

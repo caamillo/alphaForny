@@ -5,11 +5,12 @@ from pynput.keyboard import Key, Listener
 from threading import Thread
 
 class AlphaForny(FornyTranslator, Action):
-    def __init__(self, scriptPath, t) -> None:
+    def __init__(self, scriptPath, t, clear) -> None:
         self.action = Action()
         self.t = t
+        self.clear = clear
 
-        super().__init__(scriptPath, self.action, self.t)
+        super().__init__(scriptPath, self.action, self.t, self.clear)
 
         # Thread Handling
         self.pause = False

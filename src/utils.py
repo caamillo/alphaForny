@@ -3,6 +3,7 @@ import platform
 import json
 
 osName = platform.system()
+
 with open(f'./cmd/{ "windows" if osName == "Windows" else "linux" }.json') as f:
     cmd = json.load(f)
 
@@ -22,5 +23,13 @@ def countChildren(dirPath):
         count += 1
     return count
 
-def clearScreen():
-    os.system(cmd['general']['clear'])
+class Clear:
+    def __init__(self, toggle = True) -> None:
+        self.toggled = toggle
+    
+    def toggleClear(self, enable):
+        self.disableClear = enable
+
+    def clearScreen(self):
+        if self.toggled:
+            os.system(self.cmd['general']['clear'])

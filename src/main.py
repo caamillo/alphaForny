@@ -17,10 +17,11 @@ config = Config()
 STARTDIR = config.general['STARTDIR']
 
 # Utils
-from utils import clearScreen
+from utils import Clear
+clear = Clear(False)
 
 # Language Setup
-language = Language(STARTDIR)
+language = Language(STARTDIR, clear)
 lang = language.chooseLang()
 translator = Translator(lang)
 t = translator.t
@@ -29,7 +30,7 @@ t = translator.t
 from Script import Script
 def loadScript():
     chose = None
-    script = Script(STARTDIR, 'scripts', t)
+    script = Script(STARTDIR, 'scripts', t, clear)
 
     while (chose == None):
         script.printCurrDir()
@@ -51,5 +52,5 @@ def loadScript():
 
 if __name__ == "__main__":
     scriptPath = './scripts/EVs/Unima/Sp. Attack.txt' # loadScript()
-    alphaForny = AlphaForny(scriptPath, t)
+    alphaForny = AlphaForny(scriptPath, t, clear)
     alphaForny.start()

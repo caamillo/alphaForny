@@ -1,13 +1,14 @@
 import time
 
-from utils import clearScreen
+from pynput.keyboard import Key
 
 class FornyTranslator:
-    def __init__(self, scriptPath, action, t) -> None:
+    def __init__(self, scriptPath, action, t, clear) -> None:
         self.scriptPath = scriptPath
         self.actions = action
         self.t = t
         self.cmds = self.getCmds()
+        self.clear = clear
 
     def normalizeRow(self, row):
         if row.find('#') >= 0: # Trim Row + Remove Comments
@@ -44,10 +45,23 @@ class FornyTranslator:
                         cmds[lastCmd][splittedLine[0]] = splittedLine[0]
                     # print(splittedLine)
         except Exception as err:
-            clearScreen()
+            self.clear.clearScreen()
             print(f'[{ self.t("general.status.error") }]:', err)
         
         return cmds
+    
+    def mapKey(key):
+        if key == 'UP':
+            return Key.up
+        elif key == 'DOWN':
+            return Key.down
+        elif key == 'RIGHT':
+            return Key.right
+        elif key == 'LEFT':
+            return Key.left
+        elif type(key) is str:
+            return key.lower()
+        return None
 
     def validateCmd(self, key, value = None):
         try:
@@ -72,6 +86,16 @@ class FornyTranslator:
             elif key == 'SKIP':
                 if type(value) is None:
                     return True
+            elif key == 'PRESS':
+                print('ciaiaosais', type(self.mapKey(key)) is None)
+                if type(value) is str and not (type(self.mapKey(key)) is None):
+                    return True
+            elif key == 'HOLD':
+                if type(value) is str and not (type(self.mapKey(key)) is None):
+                    return True
+            elif key == 'RELEASE':
+                if type(value) is str and not (type(self.mapKey(key)) is None):
+                    return True
             return False
         except:
             return False
@@ -87,6 +111,12 @@ class FornyTranslator:
             self.actions.waitFor(value)
         elif key == 'PRINT':
             print(value)
+        elif key == 'PRESS':
+            self.actions.pressKey(self.mapKey(key))
+        elif key == 'HOLD':
+            self.actions.holdKey(self.mapKey(key))
+        elif key == 'RELEASE':
+            self.actions.holdKey(self.mapKey(key))
 
 if __name__ == "__main__":
     trans = FornyTranslator('./scripts/EVs/Unima/Sp. Attack.txt')

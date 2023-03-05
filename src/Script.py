@@ -2,13 +2,14 @@
 import os
 
 # Utils
-from utils import countChildren, clearScreen
+from utils import countChildren
 
 class Script:
-    def __init__(self, selectedPath, selectedDirName, t) -> None:
+    def __init__(self, selectedPath, selectedDirName, t, clear) -> None:
 
         selectedDir = f'{ selectedPath }{ selectedDirName }/'
         self.scriptDir = selectedDir
+        self.clear = clear
 
         self.currentPath = selectedDir
 
@@ -38,7 +39,7 @@ class Script:
             self.count = countChildren(self.currentPath)
 
     def printCurrDir(self):
-        clearScreen()
+        self.clear.clearScreen()
         print(self.t('main.select'))
         for (idx, item) in enumerate(os.listdir(self.currentPath)):
             itemPath = os.path.join(self.currentPath, item)
