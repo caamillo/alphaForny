@@ -21,9 +21,10 @@ from utils import Clear
 clear = Clear(False)
 
 # Language Setup
-language = Language(STARTDIR, clear)
-lang = language.chooseLang()
-translator = Translator(lang)
+# language = Language(STARTDIR, clear)          [ DEBUG ]
+# lang = language.chooseLang()                  [ DEBUG ]
+with open('./lang/en.json') as f:
+    translator = Translator(json.load(f))
 t = translator.t
 
 # Script Setup

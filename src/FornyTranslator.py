@@ -29,28 +29,28 @@ class FornyTranslator:
                     pass # Skip blank \n
                 elif normalizedLine.find(':') >= 0:
                     lastCmd = normalizedLine[ : - (len(normalizedLine) - normalizedLine.find(':'))]
-                    cmds[lastCmd] = {}
+                    cmds[lastCmd] = []
                 else:
                     splittedLine = normalizedLine.split()
                     if len(splittedLine) > 1:
                         if splittedLine[1].find(',') >= 0:
                             splittedLine[1] = splittedLine[1].split(',')
                         key, value = splittedLine[:2]
+                        # print(self.mapKey(value))
                         if not self.validateCmd(key, value):
                             raise Exception(f'{ key } { value } { self.t("translator.notvalid") }')
-                        cmds[lastCmd][key] = value
+                        cmds[lastCmd].append({ key: value })
                     else:
                         if not self.validateCmd(splittedLine[0]):
                             raise Exception(f'{ splittedLine[0] } { self.t("translator.notvalid") }')
-                        cmds[lastCmd][splittedLine[0]] = splittedLine[0]
+                        cmds[lastCmd].append(splittedLine[0])
                     # print(splittedLine)
         except Exception as err:
             self.clear.clearScreen()
             print(f'[{ self.t("general.status.error") }]:', err)
-        
         return cmds
     
-    def mapKey(key):
+    def mapKey(self, key):
         if key == 'UP':
             return Key.up
         elif key == 'DOWN':
@@ -87,7 +87,6 @@ class FornyTranslator:
                 if type(value) is None:
                     return True
             elif key == 'PRESS':
-                print('ciaiaosais', type(self.mapKey(key)) is None)
                 if type(value) is str and not (type(self.mapKey(key)) is None):
                     return True
             elif key == 'HOLD':
@@ -112,11 +111,11 @@ class FornyTranslator:
         elif key == 'PRINT':
             print(value)
         elif key == 'PRESS':
-            self.actions.pressKey(self.mapKey(key))
+            self.actions.pressKey(self.mapKey(value))
         elif key == 'HOLD':
-            self.actions.holdKey(self.mapKey(key))
+            self.actions.holdKey(self.mapKey(value))
         elif key == 'RELEASE':
-            self.actions.holdKey(self.mapKey(key))
+            self.actions.holdKey(self.mapKey(value))
 
 if __name__ == "__main__":
     trans = FornyTranslator('./scripts/EVs/Unima/Sp. Attack.txt')
