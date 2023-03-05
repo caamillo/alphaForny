@@ -59,6 +59,8 @@ class FornyTranslator:
             return Key.right
         elif key == 'LEFT':
             return Key.left
+        elif key == 'SHIFT':
+            return Key.shift
         elif type(key) is str:
             return key.lower()
         return None

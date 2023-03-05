@@ -1,0 +1,96 @@
+setup:
+    PRINT waiting_2_seconds_before_start
+    SLEEP 2
+    HOLD UP
+    SLEEP 3.2 # Go to center
+    RELEASE UP
+loop:
+    SLEEP 1
+    PRESS Z
+    SLEEP 1
+    PRESS Z
+    SLEEP 2.5
+    PRESS Z
+    SLEEP 4
+    PRESS Z
+    SLEEP 1
+    PRESS Z
+    SLEEP 1
+    PRESS Z
+    
+    HOLD DOWN
+    SLEEP 3
+    RELEASE DOWN
+
+    HOLD LEFT
+    SLEEP 1
+    RELEASE LEFT
+
+    HOLD DOWN
+    SLEEP .7
+    RELEASE DOWN
+
+    HOLD RIGHT
+    SLEEP 5
+    RELEASE RIGHT
+    SLEEP .5
+
+    PRESS Z
+    SLEEP 2
+    PRESS Z
+    SLEEP 1
+    PRESS Z
+    SLEEP 3
+
+    # First
+    PRESS 4
+    SLEEP 15
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP 15
+
+    # Second
+    PRESS 4
+    SLEEP 15
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP 15
+
+    # Third
+    PRESS 4
+    SLEEP 15
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP 15
+
+    # Fourth
+    PRESS 4
+    SLEEP 15
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP .5
+    PRESS Z
+    SLEEP 15
+
+    HOLD LEFT
+    SLEEP 4
+    RELEASE LEFT
+    HOLD UP
+    SLEEP .7
+    RELEASE UP
+    HOLD RIGHT
+    SLEEP 1.3
+    RELEASE RIGHT
+    HOLD UP
+    SLEEP 3.2 # Go to center
+    RELEASE UP
