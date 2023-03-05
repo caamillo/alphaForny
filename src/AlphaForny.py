@@ -11,8 +11,14 @@ class AlphaForny(FornyTranslator, Action):
 
         super().__init__(scriptPath, self.action, self.t)
 
+        # Thread Handling
         self.pause = False
         self.end = False
+
+        # PokeMMO Handling
+        self.run = False
+        self.bike = False
+
     def onPress(self, key):
         pass
     def onRelease(self, key):
