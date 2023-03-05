@@ -115,7 +115,7 @@ class FornyTranslator:
         elif key == 'HOLD':
             self.actions.holdKey(self.mapKey(value))
         elif key == 'RELEASE':
-            self.actions.holdKey(self.mapKey(value))
+            self.actions.releaseKey(self.mapKey(value))
 
 if __name__ == "__main__":
     trans = FornyTranslator('./scripts/EVs/Unima/Sp. Attack.txt')

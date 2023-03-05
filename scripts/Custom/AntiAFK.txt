@@ -1,0 +1,17 @@
+setup:
+    PRINT waiting_5_seconds_before_start
+    SLEEP 5
+
+loop:
+    HOLD UP
+    SLEEP 1
+    RELEASE UP
+    HOLD RIGHT
+    SLEEP 1
+    RELEASE RIGHT
+    HOLD DOWN
+    SLEEP 1
+    RELEASE DOWN
+    HOLD LEFT
+    SLEEP 1
+    RELEASE LEFT

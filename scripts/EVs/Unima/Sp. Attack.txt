@@ -3,10 +3,3 @@ setup:
 
 loop:
     PRESS UP
-    SLEEP 1
-    PRESS RIGHT
-    SLEEP 1
-    PRESS LEFT
-    SLEEP 1
-    PRESS DOWN
-    SLEEP 1
