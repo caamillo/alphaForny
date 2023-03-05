@@ -1,18 +1,19 @@
-# Win APIs
-import win32api, win32con
+# Click APIs
 import pyautogui as pag
+from pynput.mouse import Button, Controller
 
 import time
 
 class Action:
     def __init__(self, confidence = .8) -> None:
         self.confidence = confidence
+        self.mouse = Controller()
     
-    def clickTo(self, x, y, sleep1 = .1, sleep2 = .5):
-        win32api.SetCursorPos((x, y))
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0)
+    def clickTo(self, x, y, left = True, sleep1 = .1, sleep2 = .5):
+        self.mouse.position = (x, y)
+        self.mouse.press(Button.left if left else Button.right)
         time.sleep(sleep1)
-        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0)
+        self.mouse.release(Button.left if left else Button.right)
         time.sleep(sleep2)
     
     def isOnScreen(self, what) -> bool:

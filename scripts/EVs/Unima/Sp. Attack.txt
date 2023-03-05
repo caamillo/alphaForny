@@ -1,6 +1,7 @@
 setup:
-    PRINT Hello_Worlddd # Thats just a test
+    CLICK 1280,720 # Thats just a test
 
 loop:
-    PRINT Hello_Worlddd
+    CLICK 1280,720
+    # PRINT Hello_Worlddd
 # End

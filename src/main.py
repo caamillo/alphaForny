@@ -50,6 +50,6 @@ def loadScript():
     return chose
 
 if __name__ == "__main__":
-    scriptPath = loadScript()
+    scriptPath = './scripts/EVs/Unima/Sp. Attack.txt' # loadScript()
     alphaForny = AlphaForny(scriptPath, t)
     alphaForny.start()
