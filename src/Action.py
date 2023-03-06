@@ -12,7 +12,7 @@ import time
 from threading import Thread
 
 class Action:
-    def __init__(self, confidence = .8) -> None:
+    def __init__(self, confidence = .85) -> None:
         self.confidence = confidence
         
         self.mouse = mouse.Controller()
@@ -28,12 +28,15 @@ class Action:
         time.sleep(sleep2)
     
     def isOnScreen(self, what) -> bool:
-        return pag.locateOnScreen(f'../refs/{ what }.png', grayscale = True, confidence = self.confidence) != None
+        return pag.locateOnScreen(f'./refs/{ what }.png', grayscale = False, confidence = self.confidence) != None
     
-    def waitFor(self, what, sleep = 1):
+    def waitFor(self, what, until = False, sleep = .1):
         while True:
-            if self.isOnScreen(what):
+            if until and (not self.isOnScreen(what)):
                 break
+            elif not until and self.isOnScreen(what):
+                break
+            print('Non Trovato')
             time.sleep(sleep)
 
     def holdKey(self, key):

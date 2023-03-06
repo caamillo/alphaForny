@@ -2,92 +2,98 @@ setup:
     PRINT waiting_2_seconds_before_start
     SLEEP 2
     HOLD UP
-    SLEEP 3.2 # Go to center
+    WAITFOR center # Go to center
+    SLEEP 1
     RELEASE UP
 loop:
     SLEEP 1
     PRESS Z
-    SLEEP 1
+    WAITFOR arrow
     PRESS Z
-    SLEEP 2.5
+    WAITFOR yesno
     PRESS Z
-    SLEEP 4
+    WAITFOR arrow
     PRESS Z
-    SLEEP 1
+    WAITFOR arrow
     PRESS Z
-    SLEEP 1
+    WAITFOR arrow
     PRESS Z
     
     HOLD DOWN
-    SLEEP 3
+    WAITFOR sassi
     RELEASE DOWN
 
     HOLD LEFT
-    SLEEP 1
+    SLEEP 1.3
     RELEASE LEFT
 
     HOLD DOWN
-    SLEEP .7
+    SLEEP .5
     RELEASE DOWN
 
     HOLD RIGHT
     SLEEP 5
     RELEASE RIGHT
+    HOLD DOWN
+    SLEEP 1
+    RELEASE DOWN
+    SLEEP 1
+    PRESS RIGHT
     SLEEP .5
 
     PRESS Z
-    SLEEP 2
+    WAITFOR yesno
     PRESS Z
-    SLEEP 1
+    WAITFOR arrow
     PRESS Z
     SLEEP 3
 
     # First
-    PRESS 4
-    SLEEP 15
+    PRESS J
+    WAITFOR lotta
     PRESS Z
     SLEEP .5
     PRESS Z
     SLEEP .5
     PRESS Z
     SPAM Z
-    SLEEP 15
+    WAITFOR mare
     STOPSPAM Z
 
     # Second
-    PRESS 4
-    SLEEP 15
+    PRESS J
+    WAITFOR lotta
     PRESS Z
     SLEEP .5
     PRESS Z
     SLEEP .5
     PRESS Z
     SPAM Z
-    SLEEP 15
+    WAITFOR mare
     STOPSPAM Z
 
     # Third
-    PRESS 4
-    SLEEP 15
+    PRESS J
+    WAITFOR lotta
     PRESS Z
     SLEEP .5
     PRESS Z
     SLEEP .5
     PRESS Z
     SPAM Z
-    SLEEP 15
+    WAITFOR mare
     STOPSPAM Z
 
     # Fourth
-    PRESS 4
-    SLEEP 15
+    PRESS J
+    WAITFOR lotta
     PRESS Z
     SLEEP .5
     PRESS Z
     SLEEP .5
     PRESS Z
     SPAM Z
-    SLEEP 15
+    WAITFOR mare
     STOPSPAM Z
 
     HOLD LEFT
@@ -100,5 +106,6 @@ loop:
     SLEEP 1.3
     RELEASE RIGHT
     HOLD UP
-    SLEEP 3.2 # Go to center
+    WAITFOR center # Go to center
+    SLEEP 1
     RELEASE UP

@@ -103,6 +103,9 @@ class FornyTranslator:
             elif key == 'STOPSPAM':
                 if type(value) is str and not (type(self.mapKey(key)) is None):
                     return True
+            elif key == 'UNTIL':
+                if type(value) is str:
+                    return True
             return False
         except:
             return False
@@ -128,6 +131,8 @@ class FornyTranslator:
             self.actions.createSpam(self.mapKey(value))
         elif key == 'STOPSPAM':
             self.actions.destroySpam()
+        elif key == 'UNTIL':
+            self.actions.waitFor(value, until = True)
 
 if __name__ == "__main__":
     trans = FornyTranslator('./scripts/EVs/Unima/Sp. Attack.txt')
