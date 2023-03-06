@@ -20,7 +20,7 @@ loop:
     PRESS Z
     
     HOLD DOWN
-    WAITFOR sassi
+    WAITFOR sassi2
     RELEASE DOWN
 
     HOLD LEFT
