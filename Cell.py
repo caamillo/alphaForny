@@ -1,4 +1,4 @@
-class Cel:
+class Cell:
     def __init__(self, gridX, gridY, size, type = None) -> None:
         self.gridX = gridX
         self.gridY = gridY

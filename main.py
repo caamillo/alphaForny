@@ -1,5 +1,5 @@
 from Map import Map
-from Cel import Cel
+from Cell import Cell
 
 from Pathfinder import Pathfindinder
 
@@ -10,15 +10,15 @@ import math
 frame = cv.imread('pokemmo.png')
 h, w, channels = frame.shape
 
-celSize = int((64 *  w) / 1920) # More Accurate: 64
-print('celSize', w)
+cellSize = int((64 *  w) / 1920) # More Accurate: 64
+print('cellSize', w)
 chunkSize = 5
 
 margin = 0
 
 # Round nSize to multiple of Chunks Size
-nRows = math.ceil(math.ceil(h / celSize) / chunkSize)
-nCols = math.ceil(math.ceil(w / celSize) / chunkSize)
+nRows = math.ceil(math.ceil(h / cellSize) / chunkSize)
+nCols = math.ceil(math.ceil(w / cellSize) / chunkSize)
 
 # Make Rows / Cols in Odd
 nRows = nRows * chunkSize if nRows % 2 != 0 else (nRows + 1) * chunkSize
@@ -37,7 +37,7 @@ rangeRows = math.floor(chunksToLoadY / 2)
 
 for y in range(-rangeRows, rangeRows + 1):
     for x in range(-rangeCols, rangeCols + 1):
-        mapChunks.addCel(Cel(x, y, celSize))
+        mapChunks.addCell(Cell(x, y, cellSize))
 
 def match_all(image, template, debug=False, color=(0, 0, 255)):
     height, width = template.shape[:2]
@@ -64,36 +64,36 @@ def match_all(image, template, debug=False, color=(0, 0, 255)):
 anchorX = anchor1X + math.floor((anchor2X - anchor1X) / 2)
 anchorY = anchor1Y + math.floor((anchor2Y - anchor1Y) / 2)
 
-# midCel = mapChunks.getMidChunk().getMidCel()
-midCel = mapChunks.getCel(0, 0)
+# midCell = mapChunks.getMidChunk().getMidCell()
+midCell = mapChunks.getCell(0, 0)
 
-midCelCenterX = midCel.posX + math.ceil(celSize / 2)
-midCelCenterY = midCel.posY + math.ceil(celSize / 2)
+midCellCenterX = midCell.posX + math.ceil(cellSize / 2)
+midCellCenterY = midCell.posY + math.ceil(cellSize / 2)
 
 # print('anchors', anchorX, anchorY)
-# print('mid', midCelCenterX, midCelCenterY)
+# print('mid', midCellCenterX, midCellCenterY)
 
-offsetX = anchorX - midCelCenterX
-offsetY = anchorY - midCelCenterY
-# cv.rectangle(frame, (midCelCenterX + offsetX, midCelCenterY + offsetY), (midCelCenterX + 32 + offsetX, midCelCenterY + 32 + offsetY), (0, 0, 255), 3)
+offsetX = anchorX - midCellCenterX
+offsetY = anchorY - midCellCenterY
+# cv.rectangle(frame, (midCellCenterX + offsetX, midCellCenterY + offsetY), (midCellCenterX + 32 + offsetX, midCellCenterY + 32 + offsetY), (0, 0, 255), 3)
 
 # print(offsetX, offsetY)
 for y in range(-rangeRows, rangeRows + 1):
     for x in range(-rangeCols, rangeCols + 1):
         print('x y', x, y)
-        cel = mapChunks.getCel(x, y)
-        print('cel', cel)
-        vert1X = (cel.posX) + margin + offsetX
-        vert1Y = (cel.posY) + margin + offsetY
-        vert2X = (vert1X + celSize) - margin
-        vert2Y = (vert1Y + celSize) - margin
-        if not (cel.gridX == 0 and cel.gridY == 0):
+        cell = mapChunks.getCell(x, y)
+        print('cell', cell)
+        vert1X = (cell.posX) + margin + offsetX
+        vert1Y = (cell.posY) + margin + offsetY
+        vert2X = (vert1X + cellSize) - margin
+        vert2Y = (vert1Y + cellSize) - margin
+        if not (cell.gridX == 0 and cell.gridY == 0):
             cv.rectangle(frame, (vert1X, vert1Y), (vert2X, vert2Y), (0, 255, 0), 3)
 
 # Draw Mid
-cv.rectangle(frame, (midCel.posX + offsetX, midCel.posY + offsetY), ((midCel.posX + celSize) + offsetX, (midCel.posY + celSize) + offsetY), (255, 0, 0), 3)
+cv.rectangle(frame, (midCell.posX + offsetX, midCell.posY + offsetY), ((midCell.posX + cellSize) + offsetX, (midCell.posY + cellSize) + offsetY), (255, 0, 0), 3)
 
-# Not pixels, but cels
+# Not pixels, but cells
 # pathFinder = Pathfindinder(0, 0)
 # print(pathFinder.findPath(6, 6))
 

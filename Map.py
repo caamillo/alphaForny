@@ -8,12 +8,12 @@ class Map:
         self.chunkSize = chunkSize
 
         self.map = [ [ Chunk(chunkSize) for _ in range(self.chunksX) ] for _ in range(self.chunksY) ]
-    def addCel(self, cel):
-        chunkX = round(cel.gridX / self.chunkSize)
-        chunkY = round(cel.gridY / self.chunkSize)
+    def addCell(self, cell):
+        chunkX = round(cell.gridX / self.chunkSize)
+        chunkY = round(cell.gridY / self.chunkSize)
 
-        self.map[chunkY][chunkX].addCel(cel, chunkX, chunkY)
-    def getCel(self, x, y):
+        self.map[chunkY][chunkX].addCell(cell, chunkX, chunkY)
+    def getCell(self, x, y):
         diffX = round(x / self.chunkSize)
         diffY = round(y / self.chunkSize)
 
@@ -25,7 +25,7 @@ class Map:
 
         print('chunks', chunkX, chunkY)
 
-        return self.map[chunkY][chunkX].cels[y - (chunkY * self.chunkSize)][x - (chunkX * self.chunkSize)]
+        return self.map[chunkY][chunkX].cells[y - (chunkY * self.chunkSize)][x - (chunkX * self.chunkSize)]
     def getMidChunk(self):
         return self.map[math.ceil(self.chunksY / 2)][math.ceil(self.chunksX / 2)]
     def print(self):
