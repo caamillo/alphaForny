@@ -17,16 +17,17 @@ class Map:
         diffX = round(x / self.chunkSize)
         diffY = round(y / self.chunkSize)
 
-        print('diffs', diffX, diffY)
-        print('chunkToLoad', self.chunksX, self.chunksY)
+        # print('diffs', diffX, diffY)
+        # print('chunkToLoad', self.chunksX, self.chunksY)
 
         chunkX = (self.chunksX // 2) + diffX
         chunkY = (self.chunksY // 2) + diffY
 
-        print('chunks', chunkX, chunkY)
+        print('chunks', diffX, diffY)
 
         posX, posY = self.map[chunkY][chunkX].gridToChunk(x, y, diffX, diffY)
-        print('cell', x, y, posX, posY)
+        # print('cell', x, y, posX, posY)
+        print('chunk', self.map[chunkY][chunkX].cells[posY])
 
         return self.map[chunkY][chunkX].cells[posY][posX]
     def getMidChunk(self):

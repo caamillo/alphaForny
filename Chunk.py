@@ -6,13 +6,13 @@ class Chunk:
         self.cells = [ [ None for _ in range(self.size) ] for _ in range(self.size) ]
     
     def gridToChunk(self, gridX, gridY, chunkX, chunkY):
-        print('cell', gridX, gridY)
-        print('chunks', chunkX, chunkY)
+        # print('cell', gridX, gridY)
+        # print('chunks', chunkX, chunkY)
         
         diffChunk = math.ceil(self.size / 2)
 
         if chunkX == 0:
-            posX = abs(gridX) + (self.size // 2)
+            posX = gridX + (self.size // 2)
         elif gridX >= 0:
             posX = gridX - (diffChunk + abs((chunkX - 1) * self.size))
         elif gridX < 0:
@@ -24,15 +24,16 @@ class Chunk:
             posY = gridY - (diffChunk + abs((chunkY - 1) * self.size))
         elif gridY < 0:
             posY = (self.size - 1) + (gridY + (diffChunk + abs((chunkY + 1) * self.size)))
-        
         return (posX, posY)
 
     def addCell(self, cell, chunkX, chunkY):
         posX, posY = self.gridToChunk(cell.gridX, cell.gridY, chunkX, chunkY)
 
-        print('relPos', posX, posY)
+        # print('relPos', posX, posY)
 
         self.cells[posY][posX] = cell
+        #print(self.cells[3])
+        # print('NUOVO', posX, posY, self.cells[posY][posX])
     
     def getMidCell(self):
         return self.cells[2][2]

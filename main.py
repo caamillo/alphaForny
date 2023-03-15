@@ -39,6 +39,11 @@ for y in range(-rangeRows, rangeRows + 1):
     for x in range(-rangeCols, rangeCols + 1):
         mapChunks.addCell(Cell(x, y, cellSize))
 
+print('GET')
+for y in range(-rangeRows, rangeRows + 1):
+    for x in range(-rangeCols, rangeCols + 1):
+        mapChunks.getCell(x, y)
+
 def match_all(image, template, debug=False, color=(0, 0, 255)):
     height, width = template.shape[:2]
     matchProbability = cv.matchTemplate(image, template, cv.TM_CCOEFF_NORMED)
