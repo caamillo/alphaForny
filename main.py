@@ -11,7 +11,7 @@ frame = cv.imread('pokemmo.png')
 h, w, channels = frame.shape
 
 cellSize = int((64 *  w) / 1920) # More Accurate: 64
-print('cellSize', w)
+print('cellSize', cellSize)
 chunkSize = 5
 
 margin = 0

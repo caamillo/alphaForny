@@ -25,7 +25,10 @@ class Map:
 
         print('chunks', chunkX, chunkY)
 
-        return self.map[chunkY][chunkX].cells[y - (chunkY * self.chunkSize)][x - (chunkX * self.chunkSize)]
+        posX, posY = self.map[chunkY][chunkX].gridToChunk(x, y, diffX, diffY)
+        print('cell', x, y, posX, posY)
+
+        return self.map[chunkY][chunkX].cells[posY][posX]
     def getMidChunk(self):
         return self.map[math.ceil(self.chunksY / 2)][math.ceil(self.chunksX / 2)]
     def print(self):
