@@ -28,16 +28,21 @@ nCols = nCols * chunkSize if nCols % 2 != 0 else (nCols + 1) * chunkSize
 chunksToLoadX = int(nCols / chunkSize)
 chunksToLoadY = int(nRows / chunkSize)
 
-mapChunks = Map(chunksToLoadX, chunksToLoadY, chunkSize)
+mapChunks = Map(chunksToLoadX, chunksToLoadY, chunkSize, cellSize)
 
-print('Rows, Cols', nRows, nCols)
+print('chunkToLoad X / Y', chunksToLoadX, chunksToLoadY)
+print('Cols / Rows', nCols, nRows)
 
 rangeCols = math.floor(chunksToLoadX / 2)
 rangeRows = math.floor(chunksToLoadY / 2)
 
-for y in range(-rangeRows, rangeRows + 1):
-    for x in range(-rangeCols, rangeCols + 1):
-        mapChunks.addCell(Cell(x, y, cellSize))
+for chunkY in range(-rangeRows, rangeRows + 1):
+    print('New Chunks Row Added')
+    for chunkX in range(-rangeCols, rangeCols + 1):
+        print('New Chunk Added')
+        for y in range(chunkSize):
+            for x in range(chunkSize):
+                mapChunks.addCell(chunkX, chunkY, None)
 
 print('GET')
 for y in range(-rangeRows, rangeRows + 1):
