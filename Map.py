@@ -9,8 +9,8 @@ class Map:
         self.cellSize = cellSize
 
         self.map = [ [ Chunk(chunkSize, self.chunksX, self.chunksY, self.cellSize) for _ in range(self.chunksX) ] for _ in range(self.chunksY) ]
-    def addCell(self, chunkX, chunkY, type):
-        self.map[chunkY][chunkX].addCell(type)
+    def addCell(self, chunkX, chunkY, type = None):
+        self.map[chunkY][chunkX].addCell(chunkX, chunkY, type)
     def getCell(self, x, y):
         diffX = round(x / self.chunkSize)
         diffY = round(y / self.chunkSize)

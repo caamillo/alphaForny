@@ -17,29 +17,37 @@ class Chunk:
         diffCols = self.chunksX // 2
         diffRows = self.chunksY // 2
 
-        rangeCols = range(-diffCols, diffCols + 1)
-        rangeRows = range(-diffRows, diffRows + 1)
+        rangeCols = range(-diffCols, diffCols + 1) # Straight Colums
+        rangeRows = range(diffRows, - diffRows - 1, -1) # Reverse Rows
 
         selChunkX = rangeCols[chunkX]
         selChunkY = rangeRows[chunkY]
 
         diffChunk = math.ceil(self.size / 2)
 
-        if chunkX == diffChunk:
-            posX = (- self.size // 2) + posX
-        elif chunkX > diffChunk:
-            posX = (posX + diffChunk) + abs((selChunkX - 1) * self.size)
-        elif chunkX < diffChunk:
-            posX = - (diffChunk + ((self.size - 1) - posX) + abs((selChunkX + 1) * self.size))
+        cellX = 0
+        cellY = 0
 
-        if chunkY == diffChunk:
-            posY = (- self.size // 2) + posY
-        elif chunkY > diffChunk:
-            posY = (posY + diffChunk) + abs((selChunkY - 1) * self.size)
-        elif chunkY < diffChunk:
-            posY = - (diffChunk + ((self.size - 1) - posY) + abs((selChunkY + 1) * self.size))
+        if selChunkX == 0:
+            cellX = (- (self.size // 2)) + posX
+        elif selChunkX > 0:
+            cellX = (posX + diffChunk) + abs((selChunkX - 1) * self.size)
+        elif selChunkX < 0:
+            cellX = - (diffChunk + ((self.size - 1) - posX) + abs((selChunkX + 1) * self.size))
+
+        if selChunkY == 0:
+            cellY = - ((- (self.size // 2)) + posY)
+        elif selChunkY > 0:
+            cellY = diffChunk + ((self.size - 1) - posY) + abs((selChunkY - 1) * self.size)
+        elif selChunkY < 0:
+            cellY = - ((posY + diffChunk) + abs((selChunkY + 1) * self.size))
         
-        return (posX, posY)
+        # print('cell', cellX, cellY)
+        # print('pos', posX, posY)
+        # print('diffChunk', diffChunk)
+        # print('chunk', selChunkX, selChunkY)
+        
+        return (cellX, cellY)
     
     def gridToChunk(self, gridX, gridY, chunkX, chunkY):
         # print('cell', gridX, gridY)
@@ -62,8 +70,9 @@ class Chunk:
             posY = (self.size - 1) + (gridY + (diffChunk + abs((chunkY + 1) * self.size)))
         return (posX, posY)
 
-    def addCell(self, type):
-        gridX, gridY = self.chunkToGrid(self.cursorX, self.cursorY, self.cursorX, self.cursorY)
+    def addCell(self, chunkX, chunkY, type):
+        gridX, gridY = self.chunkToGrid(chunkX, chunkY, self.cursorX, self.cursorY)
+        # print('addCel', gridX, gridY)
         self.cells[self.cursorY][self.cursorX] = Cell(gridX, gridY, self.cellSize, type = type)
 
         if self.cursorX + 1 < self.size:

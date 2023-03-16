@@ -36,18 +36,13 @@ print('Cols / Rows', nCols, nRows)
 rangeCols = math.floor(chunksToLoadX / 2)
 rangeRows = math.floor(chunksToLoadY / 2)
 
-for chunkY in range(-rangeRows, rangeRows + 1):
+for chunkY in range(chunksToLoadY):
     print('New Chunks Row Added')
-    for chunkX in range(-rangeCols, rangeCols + 1):
+    for chunkX in range(chunksToLoadX):
         print('New Chunk Added')
         for y in range(chunkSize):
             for x in range(chunkSize):
                 mapChunks.addCell(chunkX, chunkY, None)
-
-print('GET')
-for y in range(-rangeRows, rangeRows + 1):
-    for x in range(-rangeCols, rangeCols + 1):
-        mapChunks.getCell(x, y)
 
 def match_all(image, template, debug=False, color=(0, 0, 255)):
     height, width = template.shape[:2]
@@ -76,6 +71,7 @@ anchorY = anchor1Y + math.floor((anchor2Y - anchor1Y) / 2)
 
 # midCell = mapChunks.getMidChunk().getMidCell()
 midCell = mapChunks.getCell(0, 0)
+print(midCell.gridX, midCell.gridY, midCell.posX, midCell.posY)
 
 midCellCenterX = midCell.posX + math.ceil(cellSize / 2)
 midCellCenterY = midCell.posY + math.ceil(cellSize / 2)
@@ -86,13 +82,13 @@ midCellCenterY = midCell.posY + math.ceil(cellSize / 2)
 offsetX = anchorX - midCellCenterX
 offsetY = anchorY - midCellCenterY
 # cv.rectangle(frame, (midCellCenterX + offsetX, midCellCenterY + offsetY), (midCellCenterX + 32 + offsetX, midCellCenterY + 32 + offsetY), (0, 0, 255), 3)
-
+"""
 # print(offsetX, offsetY)
 for y in range(-rangeRows, rangeRows + 1):
     for x in range(-rangeCols, rangeCols + 1):
-        print('x y', x, y)
+        # print('x y', x, y)
         cell = mapChunks.getCell(x, y)
-        print('cell', cell)
+        # print('cell', cell)
         vert1X = (cell.posX) + margin + offsetX
         vert1Y = (cell.posY) + margin + offsetY
         vert2X = (vert1X + cellSize) - margin
@@ -102,12 +98,12 @@ for y in range(-rangeRows, rangeRows + 1):
 
 # Draw Mid
 cv.rectangle(frame, (midCell.posX + offsetX, midCell.posY + offsetY), ((midCell.posX + cellSize) + offsetX, (midCell.posY + cellSize) + offsetY), (255, 0, 0), 3)
-
+"""
 # Not pixels, but cells
 # pathFinder = Pathfindinder(0, 0)
 # print(pathFinder.findPath(6, 6))
 
-cv.imshow('Demo', frame)
+"""cv.imshow('Demo', frame)
 
 cv.waitKey(0)
-cv.destroyAllWindows()
+cv.destroyAllWindows()"""
