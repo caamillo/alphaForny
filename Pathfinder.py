@@ -9,8 +9,8 @@ class Pathfindinder:
     def createMatrix(self, endX, endY):
         matrix = []
 
-        pathY = range(self.startY, endY) if self.startY < endY else range(endY, self.startY)
-        pathX = range(self.startX, endY) if self.startX < endX else range(endX, self.startX)
+        pathY = range(self.startY, endY + 1) if self.startY < endY else range(endY, self.startY)
+        pathX = range(self.startX, endY + 1) if self.startX < endX else range(endX, self.startX)
 
         for c, y in enumerate(pathY):
             matrix.append([])

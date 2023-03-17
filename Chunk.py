@@ -82,7 +82,7 @@ class Chunk:
             self.cursorY += 1
     
     def getMidCell(self):
-        return self.cells[2][2]
+        return self.cells[self.size // 2][self.size // 2]
     
     def print(self):
         for y in self.cells:

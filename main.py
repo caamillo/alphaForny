@@ -99,8 +99,12 @@ for chunkY in range(len(mapChunks.map)):
 cv.rectangle(frame, (midCell.posX + offsetX, midCell.posY + offsetY), ((midCell.posX + cellSize) + offsetX, (midCell.posY + cellSize) + offsetY), (255, 0, 0), 3)
 
 # Not pixels, but cells
-# pathFinder = Pathfindinder(0, 0)
-# print(pathFinder.findPath(6, 6))
+pathFinder = Pathfindinder(midCell.gridX, midCell.gridY)
+path = pathFinder.findPath(6, 6)
+
+for x, y in path:
+    cell = mapChunks.getCell(x, y)
+    cv.rectangle(frame, (((cell.posX + cellSize // 2) - 10) + offsetX, ((cell.posY + cellSize // 2) + 10) + offsetY), (((cell.posX + cellSize // 2) + 10) + offsetX, ((cell.posY + cellSize // 2) - 10) + offsetY), (0, 0, 255), 3)
 
 cv.imshow('Demo', frame)
 
